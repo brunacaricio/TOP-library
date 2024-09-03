@@ -1,7 +1,64 @@
 body, html {
   margin: 0;
   padding: 0;
+  --navbar: #343131;
+  --banner: #A04747;
+  --card: #D8A25E;
+  --button: #EEDF7A;
+}
+
+:root {
   box-sizing: border-box;
+}
+
+.navbar {
+  width: 100vw;
+  padding: 20px 30px;
+  background-color: var(--navbar);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.left-logo {
+  position: absolute;
+  z-index: 1;
+  width: 5rem;
+  margin: 0;
+  top: -12px;
+  left: 20px;
+}
+
+.titles {
+  display: flex;
+  gap: 30px;
+}
+
+.titles a,
+.navbar div:first-of-type {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar div:first-of-type {
+  padding-left: 80px;
+  font-size: 1.2rem;
+}
+
+.banner {
+  width: 100vw;
+  background-color: var(--banner);
+}
+
+.banner h1 {
+  margin: 0;
+  padding: 50px 30px;
+  color: white;
+  text-align: center;
 }
 
 .container {
@@ -16,10 +73,12 @@ body, html {
 }
 
 .card {
-  background-color: blanchedalmond;
+  background-color: var(--card);
   padding: 10px 15px;
   padding-bottom: 20px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .card a {
@@ -28,15 +87,16 @@ body, html {
   font-weight: 700;
 }
 
-.delete-btn {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
+.checkbox-deletebtn {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding-right: 10px;
+  margin-top: auto;
 }
 
-
 button {
-  background-color: green;
+  background-color: var(--button);
   border: none;
   padding: 8px 14px;
   border-radius: 5px;
@@ -51,14 +111,27 @@ button:hover {
 
 form div {
   margin-bottom: 10px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
 }
 
-form div input {
+form div:last-of-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 6px;
+}
+
+.book-input {
   width: 50vw;
   padding-left: 5px;
 }
 
 .d-none {
   display: none;
+}
+
+.add-btn {
+  font-weight: 600;
+  color: black;
 }

@@ -3,11 +3,16 @@ const cards = document.querySelector('.cards');
 const addBtn = document.querySelector('.add-btn');
 const form = document.querySelector('form');
 
-function Book(title, author, genre, year) {
+function Book(title, author, genre, year, read = false) {
   this.title = title;
   this.author = author;
   this.genre = genre;
   this.year = year;
+  this.read = read;
+}
+
+Book.prototype.toggleReadStatus = function() {
+  this.read = !this.read;
 }
 
 function addBookToLibrary(newBook) {
@@ -23,7 +28,13 @@ function renderBooks() {
       <div class="card">
         <p><b>${book.title}</b></p>
         <p>a ${book.genre} by <b>${book.author}</b> published in ${book.year}.</p>
-        <a href="#" class="delete-btn" data-index="${index}">Delete</a>
+        <div class="checkbox-deletebtn">
+          <label>
+            <input type="checkbox" class="read-checkbox" data-index=${index} ${book.read ? 'checked' : ''}>
+            Read
+          </label>
+          <a href="#" class="delete-btn" data-index="${index}">Delete</a>
+        </div>
       </div>
     `);
   });
