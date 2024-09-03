@@ -24,36 +24,38 @@
     <div class="cards">
     </div>
     <button class="add-btn">Add a new book</button>
-    <form action="" method="post" class="d-none">
-      <hr>
-      <h3>Add your book info:</h3>
-      <div>
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" required class="book-input">
-      </div>
+    <dialog id="new-book-dialog">
+      <form action="" method="post">
+        <div class="close-btn">x</div>
+        <h3>Add your book info:</h3>
+        <div>
+          <label for="title">Title:</label>
+          <input type="text" name="title" id="title" required class="book-input">
+        </div>
 
-      <div>
-        <label for="author">Author:</label>
-        <input type="text" name="author" id="author" required class="book-input">
-      </div>
+        <div>
+          <label for="author">Author:</label>
+          <input type="text" name="author" id="author" required class="book-input">
+        </div>
 
-      <div>
-        <label for="genre">Genre:</label>
-        <input type="text" name="genre" id="genre" required class="book-input">
-      </div>
+        <div>
+          <label for="genre">Genre:</label>
+          <input type="text" name="genre" id="genre" required class="book-input">
+        </div>
 
-      <div>
-        <label for="year">Year:</label>
-        <input type="number" name="year" id="year" required class="book-input">
-      </div>
+        <div>
+          <label for="year">Year:</label>
+          <input type="number" name="year" id="year" required class="book-input">
+        </div>
 
-      <div>
-        <input type="checkbox" id="read" name="read" value="read" class="read-checkbox">
-        <label for="read">Read</label>
-      </div>
+        <div>
+          <input type="checkbox" id="read" name="read" value="read" class="read-checkbox">
+          <label for="read">Read</label>
+        </div>
 
-      <button type="submit" class="submit-btn">Submit</button>
-    </form>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </dialog>
 
   </div>
   <script src="script.js"></script>

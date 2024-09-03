@@ -2,6 +2,8 @@ const myLibrary = [];
 const cards = document.querySelector('.cards');
 const addBtn = document.querySelector('.add-btn');
 const form = document.querySelector('form');
+const newBookDialog = document.querySelector('#new-book-dialog');
+const closeBtn = document.querySelector('.close-btn')
 
 function Book(title, author, genre, year, read = false) {
   this.title = title;
@@ -48,6 +50,15 @@ function renderBooks() {
       removeBookFromLibrary(bookIndex);
     });
   });
+
+  const readCheckboxes = document.querySelectorAll('.read-checkbox');
+  readCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', (event) => {
+      const bookIndex = checkbox.getAttribute('data-index');
+      toggleReadStatus(bookIndex);
+    })
+  })
+
 }
 
 function removeBookFromLibrary(index) {
@@ -55,9 +66,14 @@ function removeBookFromLibrary(index) {
   renderBooks(); // Re-render books
 }
 
+function toggleReadStatus(index) {
+  myLibrary[index].toggleReadStatus();
+  renderBooks();
+}
+
 // Add sample books to the library
 const book1 = new Book('1984', 'George Orwell', 'Dystopian, Science Fiction', 1949);
-const book2 = new Book('Pride and Prejudice', 'Jane Austen', 'Romance, Classic', 1813);
+const book2 = new Book('Pride and Prejudice', 'Jane Austen', 'Romance, Classic', 1813, read);
 const book3 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 'Tragedy, Fiction', 1925);
 
 const books = [book1, book2, book3];
@@ -67,15 +83,8 @@ books.forEach((book) => {
 });
 
 // Show/hide form functionality
-addBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  if (form.classList.contains('d-none')) {
-    form.classList.remove('d-none');
-    addBtn.innerText = 'Hide form';
-  } else {
-    form.classList.add('d-none');
-    addBtn.innerText = 'Add a new book';
-  }
+addBtn.addEventListener('click', () => {
+  newBookDialog.showModal();
 });
 
 // Form submission to add a new book
@@ -85,11 +94,17 @@ form.addEventListener('submit', (event) => {
   const author = document.getElementById('author').value;
   const genre = document.getElementById('genre').value;
   const year = document.getElementById('year').value;
+  const read = document.getElementById('read').checked;
 
-  const newBook = new Book(title, author, genre, year);
+  const newBook = new Book(title, author, genre, year, read);
   addBookToLibrary(newBook);
 
-  form.reset(); // Reset form fields
+  form.reset();
+  newBookDialog.close();
 });
+
+closeBtn.addEventListener('click', () => {
+  newBookDialog.close();
+})
 
 console.log(myLibrary);
