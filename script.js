@@ -5,17 +5,33 @@ const form = document.querySelector('form');
 const newBookDialog = document.querySelector('#new-book-dialog');
 const closeBtn = document.querySelector('.close-btn')
 
-function Book(title, author, genre, year, read = false) {
-  this.title = title;
-  this.author = author;
-  this.genre = genre;
-  this.year = year;
-  this.read = read;
+class Book {
+  constructor(title, author, genre, year, read = false) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.year = year;
+    this.read = read;
+  }
+
+  toggleReadStatus() {
+    this.read = !this.read;
+  }
 }
 
-Book.prototype.toggleReadStatus = function() {
-  this.read = !this.read;
-}
+
+
+// function Book(title, author, genre, year, read = false) {
+//   this.title = title;
+//   this.author = author;
+//   this.genre = genre;
+//   this.year = year;
+//   this.read = read;
+// }
+
+// Book.prototype.toggleReadStatus = function() {
+//   this.read = !this.read;
+// }
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
